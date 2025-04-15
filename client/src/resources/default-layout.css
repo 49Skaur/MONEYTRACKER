@@ -1,0 +1,90 @@
+.layout {
+    margin: 0 80px;
+    transition: all 0.3s ease;
+}
+
+.header {
+    background: linear-gradient(135deg, #389B89, #a0ded3);
+    padding: 20px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+
+.logo {
+    font-size: 36px;
+    margin: 0;
+    cursor: pointer;
+    color: #fff;
+    font-family: "DM Serif Text", serif;
+    letter-spacing: 1px;
+    transition: transform 0.2s ease;
+}
+
+.logo:hover {
+    text-shadow: 0 0 10px rgba(56, 155, 137, 0.8);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+
+.username {
+    font-size: 18px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.content {
+    height: 85vh;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #e8f5f2; /* Soft mint/teal tone */
+    box-shadow: 0 10px 25px rgba(56, 155, 137, 0.1); /* subtle green glow */
+    overflow-y: auto;
+    color: #333; /* Deep gray for readable text */
+}
+
+.spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%)
+}
+
+.ant-spin-dot-item{
+    background-color: gray !important;
+}
+
+.user-menu-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .user-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+@media screen and (max-width: 700px) {
+    .layout {
+        margin: 0 15px;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+
+    .username {
+        font-size: 14px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+}

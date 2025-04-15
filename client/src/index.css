@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif; /* Default font for the body */
+}
+body,html{
+  overflow-x: hidden;
+}
+
+
+.logo {
+  font-family: 'Playfair Display', serif; /* Font for "MONEY TRACKER" header */
+  font-weight: 600; /* Adding font weight if necessary */
+}
+
+.username {
+  font-family: 'Poppins', sans-serif; /* Font for username */
+  font-weight: 500;
+}
+
+.page-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: #2c3e50; /* Deep slate blue/gray — clean & readable */
+}
+
+
+.primary{
+  background-color: #161C51;
+  padding: 5px 20px;
+  color: white;
+  border: none;
+}
+
+.auth-link {
+  text-decoration: none;
+  color: #2c3e50; /* light, fresh blue */
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #555; /* slightly deeper on hover */
+  text-decoration: underline;
+}
+
+/* Style form labels (like Name, Email, Password) */
+.ant-form-item-label > label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #2c3e50 !important; /* Matches the .auth-link color */
+}
+
+
+

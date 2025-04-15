@@ -1,0 +1,125 @@
+/*styling related to register page*/
+.register{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to top, #9890e3 0%, #389B89 100%);
+}
+
+/* Styling for the Login page */
+.login {
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    background-image: linear-gradient(to top, #9890e3 0%, #389B89 100%);
+}
+
+.login input {
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgb(102, 97, 97) !important;
+    color: aliceblue !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.login input:focus,
+.login input:hover {
+    background-color: transparent !important;
+    border-color: #ffffffaa !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 0 !important;
+}
+
+.login .ant-form-item-label > label {
+    color: #2c3e50 !important;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login .form-intro {
+    margin-bottom: 50px; /* Adjust the space below the intro text */
+}
+
+.lottie{
+    height: 400px;
+}
+
+.page-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 30px !important;
+    color: #2c3e50;
+    margin-bottom: 8px; /* 👈 Add spacing below the title */
+  }
+  
+  .form-intro {
+    color: rgb(82, 75, 75);
+    font-weight: 500;
+    margin-bottom: 24px; /* 👈 Add more space before the form fields */
+  }
+  
+  .register .form-intro {
+    margin-bottom: 50px; /* Adjust the space below the intro text */
+}
+
+
+
+.register input {
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgb(102, 97, 97) !important;
+    color: aliceblue !important;
+    box-shadow: none !important;
+    border-radius: 0 !important; /* ⬅️ This kills the rounded corners */
+  }
+  
+  .register input:focus,
+  .register input:hover {
+    background-color: transparent !important;
+    border-color: #ffffffaa !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 0 !important; /* ⬅️ Just to be safe on focus too */
+  }
+  
+  .register .ant-form-item-label > label {
+    color: #2c3e50 !important;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  
+  .register h1{
+    font-size: 25px;
+    color: #2c3e50;
+  }
+
+  /* Styling for Register Button */
+  .primary {
+    background-color: #161C51;
+    padding: 8px 16px; /* Adjusted padding for a smaller button */
+    color: white;
+    border: none;
+    font-size: 14px; /* Adjust the font size if needed */
+    border-radius: 4px; /* Slight border radius for rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.primary:hover {
+    background-color: #4e5b99; /* Lighter shade for hover effect */
+    transform: scale(1.05); /* Slight scale up on hover */
+}
+
+.primary:active {
+    background-color: #2e3b72; /* Even darker shade when button is pressed */
+    transform: scale(0.98); /* Shrink effect when pressed */
+}
+
+.primary:focus {
+    outline: none; /* Remove focus outline */
+}
