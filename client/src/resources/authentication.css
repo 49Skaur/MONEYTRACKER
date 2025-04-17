@@ -123,3 +123,42 @@
 .primary:focus {
     outline: none; /* Remove focus outline */
 }
+
+/* 👊 Force transparent background and styling for Ant Design password field */
+.register .ant-input-password {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgb(102, 97, 97) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.register .ant-input-password input {
+  background-color: transparent !important;
+  color: aliceblue !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.register .ant-input-password input:focus,
+.register .ant-input-password input:hover {
+  background-color: transparent !important;
+  border-color: #ffffffaa !important;
+  outline: none !important;
+}
+
+/* Optional: Fix visibility toggle icon color */
+.register .ant-input-password-icon {
+  color: aliceblue !important;
+}
+
+
+/* Make Ant Design form error messages visible on dark background */
+.register .ant-form-item-explain-error {
+  color: #ffb3b3 !important; /* Soft red or you can go pure red: #ff4d4f */
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  margin-top: 4px;
+}
