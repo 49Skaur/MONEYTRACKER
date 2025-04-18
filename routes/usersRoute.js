@@ -4,22 +4,25 @@ const router = express.Router();
 
 router.post('/login', async function (req, res) {
     try {
-        const result = await User.findOne({
-            email: req.body.email,
-            password: req.body.password,
-        });
+        const { email, password } = req.body;
 
-        if (result) {
-            res.send(result);
-        } else {
-            res.status(500).json("Error");
+        // Check if user with this email exists
+        const user = await User.findOne({ email: email });
+
+        if (!user) {
+            return res.status(401).json({ message: 'No account found with this email address.' });
         }
 
-    }
-    catch (error) {
-        res.status(500).json(error);
-    }
+        // Check if the password matches
+        if (user.password !== password) {
+            return res.status(401).json({ message: 'Incorrect password. Please try again.' });
+        }
 
+        // If everything matches
+        res.send(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong. Please try again later.' });
+    }
 });
 
 // Register route with username check
