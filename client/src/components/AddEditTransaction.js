@@ -3,7 +3,9 @@ import { Modal, Form, Input, Select, message } from 'antd';
 import axios from 'axios';
 import Spinner from "./Spinner";
 
-function AddEditTransaction({ setShowAddEditTransactionModal, showAddEditTransactionModal }) {
+function AddEditTransaction({ setShowAddEditTransactionModal, showAddEditTransactionModal,
+getTransactions
+}) {
     const [loading, setLoading] = useState(false)
     const [form] = Form.useForm();
     const onFinish = async (values) => {
@@ -14,6 +16,7 @@ function AddEditTransaction({ setShowAddEditTransactionModal, showAddEditTransac
                 ...values, userid: user._id,
 
             });
+            getTransactions()
             message.success('Transaction Added Successfully!');
             setShowAddEditTransactionModal(false);
             setLoading(false);

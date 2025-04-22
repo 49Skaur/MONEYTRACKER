@@ -28,3 +28,35 @@
     box-shadow: none !important;
     outline: none !important;
 }
+
+.clear-range-btn {
+    background-color: #389B89; /* Darker shade */
+    color: #fff; /* White text for contrast */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px 15px; /* Adjust padding for a balanced button size */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 10px; /* Adds space to the left of the button */
+    font-size: 13px; /* Reduced font size */
+    margin-top: auto !important;
+}
+
+.clear-range-btn:hover {
+    background-color: #a0ded3; /* Soft teal color similar to your theme */
+    transform: scale(1.05); /* Slight grow effect */
+}
+
+.clear-filter-btn {
+    background-color: #389B89; /* Darker shade */
+    color: #fff; /* White text for contrast */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px 15px; /* Adjust padding for a balanced button size */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 13px; /* Reduced font size */
+    margin-top: 25px;
+}
