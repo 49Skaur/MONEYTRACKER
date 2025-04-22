@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { message, Table, Select, DatePicker } from 'antd';
+import { message, Table, Select, DatePicker, Popconfirm } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import DefaultLayout from '../components/DefaultLayout';
 import '../resources/transactions.css';
 import AddEditTransaction from '../components/AddEditTransaction';
@@ -11,6 +12,7 @@ const { RangePicker } = DatePicker;
 function Home() {
     const [showAddEditTransactionModal, setShowAddEditTransactionModal] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [selectedItemForEdit, setSelectedItemForEdit] = useState(null)
     const [transactionsData, setTransactionsData] = useState([]);
     const [frequency, setFrequency] = useState('all');
     const [type, setType] = useState('all');
@@ -31,6 +33,21 @@ function Home() {
                 type
             });
             setTransactionsData(response.data)
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            message.error("Something went wrong!");
+        }
+    }
+
+    const deleteTransaction = async (record) => {
+        try {
+            setLoading(true);
+            await axios.post('/api/transactions/delete-transaction', {
+                transactionId: record._id
+            });
+            message.success("Transaction Deleted Successfully")
+            getTransactions(); // Add this line to refresh the table
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -75,6 +92,27 @@ function Home() {
         {
             title: "Description",
             dataIndex: "description",
+        },
+        {
+            title: "Actions",
+            dataIndex: "actions",
+            render: (text, record) => {
+                return <div>
+                    <EditOutlined onClick={() => {
+                        setSelectedItemForEdit(record)
+                        setShowAddEditTransactionModal(true)
+                    }} />
+                    <Popconfirm
+                        title="Are you sure you want to delete this transaction?"
+                        onConfirm={() => deleteTransaction(record)}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <DeleteOutlined className='mx-3' />
+                    </Popconfirm>
+
+                </div>
+            }
         }
     ]
 
@@ -154,7 +192,9 @@ function Home() {
                 <AddEditTransaction
                     showAddEditTransactionModal={showAddEditTransactionModal}
                     setShowAddEditTransactionModal={setShowAddEditTransactionModal}
+                    selectedItemForEdit={selectedItemForEdit}
                     getTransactions={getTransactions}
+                    setSelectedItemForEdit={setSelectedItemForEdit}
                 />
             )}
         </DefaultLayout>

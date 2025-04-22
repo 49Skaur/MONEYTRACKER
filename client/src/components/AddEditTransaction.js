@@ -3,7 +3,7 @@ import { Modal, Form, Input, Select, message } from 'antd';
 import axios from 'axios';
 import Spinner from "./Spinner";
 
-function AddEditTransaction({ setShowAddEditTransactionModal, showAddEditTransactionModal,
+function AddEditTransaction({ setShowAddEditTransactionModal, showAddEditTransactionModal, selectedItemForEdit, setSelectedItemForEdit,
 getTransactions
 }) {
     const [loading, setLoading] = useState(false)
@@ -12,13 +12,26 @@ getTransactions
         try {
             const user = JSON.parse(localStorage.getItem("moneytracker-user"))
             setLoading(true);
-            await axios.post('/api/transactions/add-transaction', {
-                ...values, userid: user._id,
-
-            });
-            getTransactions()
-            message.success('Transaction Added Successfully!');
+            if(selectedItemForEdit){
+                await axios.post('/api/transactions/edit-transaction', {
+                    payload : {
+                        ...values, userid: user._id,
+                    },
+                    transactionId : selectedItemForEdit._id,    
+                });
+                getTransactions()
+                message.success('Transaction Updated Successfully!');
+            }
+            else{
+                await axios.post('/api/transactions/add-transaction', {
+                    ...values, userid: user._id,
+    
+                });
+                getTransactions()
+                message.success('Transaction Added Successfully!');
+            }
             setShowAddEditTransactionModal(false);
+            setSelectedItemForEdit(null);
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -33,13 +46,13 @@ getTransactions
     return (
         <div>
             <Modal
-                title="Add Transaction"
+                title={selectedItemForEdit ? 'Edit Transaction' : 'Add Transaction'}
                 visible={showAddEditTransactionModal}
                 onCancel={() => setShowAddEditTransactionModal(false)}
                 footer={false}
             >
                 {loading && <Spinner />}
-                <Form layout='vertical' className='transaction-form' onFinish={onFinish}>
+                <Form layout='vertical' className='transaction-form' onFinish={onFinish} initialValues={selectedItemForEdit}>
                     <Form.Item label="Amount" name='amount' rules={[{ required: true, message: 'Please enter an amount' },
                     {
                         pattern: /^\d+(\.\d{1,2})?$/,
@@ -102,7 +115,7 @@ getTransactions
                         <Input type='text' />
                     </Form.Item>
 
-                    <Form.Item label="Description" name='description' rules={[{ required: true, message: 'Please enter a description' }]}
+                    <Form.Item label="Description" name='description' rules={[{message: 'Please enter a description' }]}
                     >
                         <Input type='text' />
                     </Form.Item>
