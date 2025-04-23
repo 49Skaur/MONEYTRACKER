@@ -40,7 +40,7 @@ function Home() {
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            message.error("Something went wrong!");
+            message.error("!Something went wrong!");
         }
     }
 
@@ -55,7 +55,7 @@ function Home() {
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            message.error("Something went wrong!");
+            message.error("Delete - Something went wrong!");
         }
     }
 
@@ -137,7 +137,8 @@ function Home() {
 
                         {frequency === 'custom' && (
                             <div className="mt-2">
-                                <RangePicker value={selectedRange} onChange={(values) => setSelectedRange(values)} />
+                                <RangePicker value={selectedRange} onChange={(values) => setSelectedRange(values)}
+                                    disabledDate={(current) => current && current > new Date()} />
                                 <button
                                     className="clear-range-btn"
                                     onClick={() => setSelectedRange([])}

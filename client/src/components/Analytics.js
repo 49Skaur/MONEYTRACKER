@@ -6,14 +6,14 @@ function Analytics({ transactions }) {
     const totalTransactions = transactions.length
     const totalIncomeTransactions = transactions.filter(transaction => transaction.type === 'income')
     const totalExpenseTransactions = transactions.filter(transaction => transaction.type === 'expense')
-    const totalIncomeTransactionsPercentage = (totalIncomeTransactions.length / totalTransactions) * 100
-    const totalExpenseTransactionsPercentage = (totalExpenseTransactions.length / totalTransactions) * 100
+    const totalIncomeTransactionsPercentage = totalTransactions === 0 ? 0 : (totalIncomeTransactions.length / totalTransactions) * 100;
+    const totalExpenseTransactionsPercentage = totalTransactions === 0 ? 0 : (totalExpenseTransactions.length / totalTransactions) * 100;
 
     const totalTurnover = transactions.reduce((acc, transaction) => acc + transaction.amount, 0)
     const totalIncomeTurnover = transactions.filter(transaction => transaction.type === 'income').reduce((acc, transaction) => acc + transaction.amount, 0)
     const totalExpenseTurnover = transactions.filter(transaction => transaction.type === 'expense').reduce((acc, transaction) => acc + transaction.amount, 0)
-    const totalIncomeTurnoverPercentage = (totalIncomeTurnover / totalTurnover) * 100
-    const totalExpenseTurnoverPercentage = (totalExpenseTurnover / totalTurnover) * 100
+    const totalIncomeTurnoverPercentage = totalTurnover === 0 ? 0 : (totalIncomeTurnover / totalTurnover) * 100;
+    const totalExpenseTurnoverPercentage = totalTurnover === 0 ? 0 : (totalExpenseTurnover / totalTurnover) * 100;
     return (
         <div className='analytics'>
             <div className='row'>
