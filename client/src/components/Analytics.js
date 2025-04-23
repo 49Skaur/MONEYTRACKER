@@ -1,0 +1,46 @@
+import React from 'react';
+import { Progress } from 'antd';
+import '../resources/analytics.css'
+
+function Analytics({ transactions }) {
+    const totalTransactions = transactions.length
+    const totalIncomeTransactions = transactions.filter(transaction => transaction.type === 'income')
+    const totalExpenseTransactions = transactions.filter(transaction => transaction.type === 'expense')
+    const totalIncomeTransactionsPercentage = (totalIncomeTransactions.length / totalTransactions) * 100
+    const totalExpenseTransactionsPercentage = (totalExpenseTransactions.length / totalTransactions) * 100
+
+    return (
+        <div className='analytics'>
+            <div className='row'>
+                <div className='col-md-4 mt-3'>
+                    <div className='transactions-count'>
+                        <h4>Total Transactions Count: {totalTransactions}</h4>
+                        <hr />
+                        <h5>Income : {totalIncomeTransactions.length}</h5>
+                        <h5>Expense : {totalExpenseTransactions.length}</h5>
+
+                        <div className='progress-bars'>
+                            <Progress
+                                className='mx-5'
+                                strokeColor='green'
+                                type='circle'
+                                percent={totalIncomeTransactionsPercentage.toFixed(0)}
+                                format={percent => `${percent}%`}
+                            />
+
+                            <Progress
+                                strokeColor='red'
+                                type='circle'
+                                percent={totalExpenseTransactionsPercentage.toFixed(0)}
+                                format={percent => `${percent}%`}
+                            />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Analytics;

@@ -60,3 +60,38 @@
     font-size: 13px; /* Reduced font size */
     margin-top: 25px;
 }
+
+.view-switch {
+    display: flex;
+    align-items: center; /* Vertically center icons */
+    justify-content: center;
+    border: 1px solid rgba(85, 81, 81, 0.71);
+    border-radius: 5px;
+    padding: 10px 12px;
+    gap: 10px; /* Optional: adds space between icons */
+}
+
+.view-switch .anticon {
+    display: flex;
+    align-items: center; /* Ensures svg inside is centered too */
+    justify-content: center;
+}
+
+.anticon:hover {
+    color: #888;
+    cursor: pointer;
+}
+
+.view-switch .anticon svg{
+    font-size: 20px;
+    position: static;
+}
+
+.active-icon{
+    color: black;
+    font-weight: bold;
+}
+
+.inactive-icon{
+    color: gray;
+}

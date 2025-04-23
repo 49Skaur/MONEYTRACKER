@@ -7,6 +7,9 @@ import AddEditTransaction from '../components/AddEditTransaction';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import moment from "moment";
+import { UnorderedListOutlined, DotChartOutlined } from '@ant-design/icons';
+import Analytics from '../components/Analytics';
+
 const { RangePicker } = DatePicker;
 
 function Home() {
@@ -17,6 +20,7 @@ function Home() {
     const [frequency, setFrequency] = useState('all');
     const [type, setType] = useState('all');
     const [selectedRange, setSelectedRange] = useState([]);
+    const [viewType, setViewType] = useState('table')
     const getTransactions = async () => {
         try {
             const user = JSON.parse(localStorage.getItem("moneytracker-user"))
@@ -168,23 +172,36 @@ function Home() {
                     </div>
 
                 </div>
-                <div>
+                <div className='d-flex'>
+                    <div>
+                        <div className='view-switch mx-5'>
+                            <UnorderedListOutlined className={`mx-2 ${viewType === 'table' ? 'active-icon' : 'inactive - icon'}`}
+                                onClick={() => setViewType('table')} />
+                            <DotChartOutlined className={`${viewType === 'analytics' ? 'active-icon' : 'inactive - icon'}`}
+                                onClick={() => setViewType('analytics')} />
+                        </div>
+                    </div>
+
                     <button className="primary" onClick={() => setShowAddEditTransactionModal(true)}>
                         ADD NEW
                     </button>
                 </div>
             </div>
             <br></br>
-            <div className="table-analtics">
-                <div className="table">
-                    {(frequency !== 'custom' || selectedRange.length === 2) ? (
-                        <Table columns={columns} dataSource={transactionsData} />
-                    ) : (
-                        <div className="text-center text-muted mt-3">
-                            Please select a date range to view transactions.
+            <div className="table-analytics">
+                {(frequency !== 'custom' || selectedRange.length === 2) ? (
+                    viewType === 'table' ? (
+                        <div className="table">
+                            <Table columns={columns} dataSource={transactionsData} />
                         </div>
-                    )}
-                </div>
+                    ) : (
+                        <Analytics transactions={transactionsData} />
+                    )
+                ) : (
+                    <div className="text-center text-muted mt-3">
+                        Please select a date range to view transactions.
+                    </div>
+                )}
             </div>
 
             {/* Correct conditional rendering */}
