@@ -14,6 +14,8 @@ function Analytics({ transactions }) {
     const totalExpenseTurnover = transactions.filter(transaction => transaction.type === 'expense').reduce((acc, transaction) => acc + transaction.amount, 0)
     const totalIncomeTurnoverPercentage = totalTurnover === 0 ? 0 : (totalIncomeTurnover / totalTurnover) * 100;
     const totalExpenseTurnoverPercentage = totalTurnover === 0 ? 0 : (totalExpenseTurnover / totalTurnover) * 100;
+
+    const categories = ['salary', 'freelance', 'rent', 'utilities', 'food', 'entertainment', 'education', 'medical', 'travel', 'other']
     return (
         <div className='analytics'>
             <div className='row'>
@@ -71,6 +73,51 @@ function Analytics({ transactions }) {
                     </div>
                 </div>
 
+            </div>
+            <div className='row mt-5'>
+                <div className='col-md-6'>
+                    <div className='category-analysis'>
+                        <h4>Income - Category Wise</h4>
+                        {
+                            categories.map((category) => {
+                                const amount = transactions.filter(t => t.type == 'income' && t.category === category).reduce((acc, t) => acc + t.amount, 0)
+                                return (
+                                    amount > 0 && <div className='category-card'>
+                                        <h5>{category}</h5>
+                                        <Progress
+                                            percent={totalIncomeTurnover > 0 ? ((amount / totalIncomeTurnover) * 100).toFixed(0) : 0}
+                                            format={percent => `${percent}%`}
+                                        />
+                                    </div>
+                                );
+
+
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div className='col-md-6'>
+                    <div className='category-analysis'>
+                        <h4>Expense - Category Wise</h4>
+                        {
+                            categories.map((category) => {
+                                const amount = transactions.filter(t => t.type == 'expense' && t.category === category).reduce((acc, t) => acc + t.amount, 0)
+                                return (
+                                    amount > 0 && <div className='category-card'>
+                                        <h5>{category}</h5>
+                                        <Progress
+                                            percent={totalExpenseTurnover > 0 ? ((amount / totalExpenseTurnover) * 100).toFixed(0) : 0}
+                                            format={percent => `${percent}%`}
+                                        />
+                                    </div>
+                                );
+
+
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     );

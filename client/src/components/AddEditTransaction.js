@@ -115,7 +115,7 @@ getTransactions
                         <Input type='text' />
                     </Form.Item>
 
-                    <Form.Item label="Description" name='description' rules={[{message: 'Please enter a description' }]}
+                    <Form.Item label="Description" name='description' rules={[{ message: 'Please enter a description' }]}
                     >
                         <Input type='text' />
                     </Form.Item>
