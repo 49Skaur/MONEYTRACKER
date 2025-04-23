@@ -7,7 +7,7 @@ import Spinner from '../components/Spinner';
 
 function Register() {
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate(true);
+    const navigate = useNavigate();
     const [form] = Form.useForm();  // Step 1: Use form hook to get form instance
 
     const onFinish = async (values) => {
@@ -17,6 +17,9 @@ function Register() {
             message.success('Registration Successful');
             form.resetFields();  // Step 2: Reset form fields after successful registration
             setLoading(false);
+            // After successful registration, navigate to the login page
+            navigate('/login');  // Redirect to the login page
+
         } catch (error) {
             setLoading(false);
             // Check if the error has a message to display

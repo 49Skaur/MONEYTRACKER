@@ -41,7 +41,7 @@ function Login() {
             <div className="row justify-content-center align-items-center w-100 h-100">
                 {/* Form Section */}
                 <div className="col-md-4">
-                    <Form layout='vertical' onFinish={onFinish} form={form}> {/* ✅ Step 3: Attach form instance */}
+                    <Form layout='vertical' onFinish={onFinish} form={form} autoComplete='off'> {/* ✅ Step 3: Attach form instance */}
                         <h1 className="page-title">MONEY TRACKER Login</h1>
                         <p className="form-intro">One Step Closer to Better Budgeting</p>
 
@@ -53,7 +53,7 @@ function Login() {
                                 { type: 'email', message: 'Enter a valid email address (name@example.com)' }
                             ]}
                         >
-                            <Input placeholder="name@example.com" />
+                            <Input placeholder="name@example.com" autoComplete='off' />
                         </Form.Item>
 
                         <Form.Item
@@ -64,7 +64,7 @@ function Login() {
                                 { min: 6, message: 'Password must be at least 6 characters' }
                             ]}
                         >
-                            <Input.Password placeholder="Enter your password" />
+                            <Input.Password placeholder="Enter your password" autoComplete='new-password'/>
                         </Form.Item>
 
                         <div className="d-flex justify-content-between align-items-center">

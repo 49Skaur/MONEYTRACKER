@@ -10,7 +10,7 @@ router.post('/login', async function (req, res) {
         const user = await User.findOne({ email: email });
 
         if (!user) {
-            return res.status(401).json({ message: 'No account found with this email address.' });
+            return res.status(401).json({ message: 'This email address is not yet Registered.' });
         }
 
         // Check if the password matches
@@ -46,7 +46,7 @@ router.post('/register', async function (req, res) {
         const newuser = new User({
             name,
             email,
-            password, // You should hash this before saving in a real app!
+            password, //hash this before saving in a real app!
         });
 
         await newuser.save();

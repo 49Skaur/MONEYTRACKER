@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { Modal, Form, Input, Select, message } from 'antd';
 import axios from 'axios';
 import Spinner from "./Spinner";
+import moment from 'moment'; // or use native toISOString() method if you prefer
 
 function AddEditTransaction({ setShowAddEditTransactionModal, showAddEditTransactionModal, selectedItemForEdit, setSelectedItemForEdit,
-getTransactions
+    getTransactions
 }) {
     const [loading, setLoading] = useState(false)
     const [form] = Form.useForm();
@@ -12,20 +13,20 @@ getTransactions
         try {
             const user = JSON.parse(localStorage.getItem("moneytracker-user"))
             setLoading(true);
-            if(selectedItemForEdit){
+            if (selectedItemForEdit) {
                 await axios.post('/api/transactions/edit-transaction', {
-                    payload : {
+                    payload: {
                         ...values, userid: user._id,
                     },
-                    transactionId : selectedItemForEdit._id,    
+                    transactionId: selectedItemForEdit._id,
                 });
                 getTransactions()
                 message.success('Transaction Updated Successfully!');
             }
-            else{
+            else {
                 await axios.post('/api/transactions/add-transaction', {
                     ...values, userid: user._id,
-    
+
                 });
                 getTransactions()
                 message.success('Transaction Added Successfully!');
@@ -52,7 +53,11 @@ getTransactions
                 footer={false}
             >
                 {loading && <Spinner />}
-                <Form layout='vertical' className='transaction-form' onFinish={onFinish} initialValues={selectedItemForEdit}>
+                <Form layout='vertical' className='transaction-form' onFinish={onFinish} initialValues={{
+                    ...selectedItemForEdit, // Spread the rest of the transaction data
+                    date: selectedItemForEdit ? new Date(selectedItemForEdit.date).toISOString().split("T")[0] : '', // Extract only YYYY-MM-DD part
+                }}
+                >
                     <Form.Item label="Amount" name='amount' rules={[{ required: true, message: 'Please enter an amount' },
                     {
                         pattern: /^\d+(\.\d{1,2})?$/,
@@ -106,7 +111,7 @@ getTransactions
                     >
                         <Input
                             type="date"
-                            max={new Date().toISOString().split("T")[0]}
+                            max={new Date().toISOString().split("T")[0]} //Make sure user can't select future dates
                         />
                     </Form.Item>
 
